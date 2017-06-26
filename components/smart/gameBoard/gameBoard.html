@@ -1,0 +1,21 @@
+<div
+     ng-class="{'gameBoard': true,
+               'shake-top': $ctrl.loseTheGame
+               }">
+
+    <div class="grid-container">
+        <grid-box 
+                  ng-class="{'heartbeat': true
+                            }"
+
+                  ng-repeat="grid in $ctrl.gridBox"
+                  list-items="$ctrl.generatedSequence"
+                  index-item="$index"
+                  ng-click="$ctrl.hasClicked($index)"></grid-box>
+    </div>
+
+</div>
+
+<h1 class="myLevel" ng-class="{'scale-in-center': $ctrl.nextLevel}"> Level {{$ctrl.myLevel}}</h1>
+<div class="new-game-button next-phase" ng-click="$ctrl.newGame()">new game</div>
+<div class="new-game-button" ng-click="$ctrl.isDone()">Finished</div>

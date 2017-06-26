@@ -1,0 +1,87 @@
+.container{
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 600px;
+}
+
+.headerItens{
+    height: 100px;
+    margin: 20px;
+}
+.header__title{
+    display: inline-block;
+    font-size: 40px;
+    float: left;
+    color: #80BCA3;
+}
+
+.scores-container{
+    float: right;
+    display: inline-block;
+}
+.information-container{
+    background-color: #80BCA3;
+    border-radius: 10px;
+    color: #F6F7FB;
+
+    display: inline-block;
+    height: 50px;
+    line-height: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100px;
+
+}
+.new-game-button{
+    background-color: #F9A177;
+    border-radius: 10px;
+    color: #F6F7FB;
+
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100px;
+    float: right;
+    margin: 20px 5px;
+
+}
+
+/* Game Board */
+
+.gameBoard{
+    position: relative;
+    margin:auto;
+    padding: 15px;
+    background: #655643;
+    border-radius: 6px;
+    width: 400px;
+    height: 400px;
+    box-sizing: border-box;
+}
+.grid-container{
+    position: absolute;
+    margin: 0 auto;
+    z-index: 1;
+}
+.grid-cell{
+    width: 81.25px;
+    height: 81.25px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    float:left;
+    border-radius: 3px;
+    background: rgba(238,228,218,.35);
+}
+.myLevel{
+    position: absolute;
+    font-size: 35px;
+    height: 50px;
+    top: 38%;
+    left: 50%;
+    margin-left: -50px; /* margin is -0.5 * dimension */
+    margin-top: -25px; 
+    z-index: 1;
+    display: none;
+}

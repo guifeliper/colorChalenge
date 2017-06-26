@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="colourChallenge">
+    <head>
+        <meta charset="UTF-8">
+        <title>Colour Challenge</title>
+        <link rel="stylesheet" href="common/css/style.css">
+        <link rel="stylesheet" href="common/css/reset.css">
+        <link rel="stylesheet" href="common/css/animations.css">
+    </head>
+    <body>
+        <main class="container" ng-view>
+
+            <home-page></home-page>
+
+        </main>
+
+
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="common/js/init.js"></script>
+
+        <! ----- Pages ---->
+        <script src="pages/home/home-component.js"></script>
+
+        <! ----- Smart ---->
+        <script src="components/smart/header/header-component.js"></script>
+        <script src="components/smart/header/header-controller.js"></script>
+        <script src="components/smart/header/header-service.js"></script>
+        <script src="components/smart/gameBoard/gameBoard-component.js"></script>
+        <script src="components/smart/gameBoard/gameBoard-controller.js"></script>
+        <script src="components/smart/gameBoard/gameBoard-constant.js"></script>
+        
+
+        <! ----- Ui ---->
+        <script src="components/ui/grid-box/grid-box-component.js"></script>
+    </body>
+</html>
