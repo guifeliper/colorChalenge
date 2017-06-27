@@ -1,5 +1,7 @@
 angular.module('colourChallenge').controller('GameBoardController',[
     'GRID.CONFIG',
+    '$interval',
+    '$scope',
     function GameBoardController(GRID){
         var self = this;
         //DOM
