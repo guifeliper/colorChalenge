@@ -3,22 +3,14 @@
                }">
 
     <div class="grid-container">
-        <!--        <grid-box
-                  ng-repeat="grid in $ctrl.gridBox"
-                  ng-class="{'heartbeat': $ctrl.heartbeatId == grid}"
-                  index-item="grid"
-                  ng-click="$ctrl.hasClicked($index)">
-        </grid-box>-->
-        <div class="grid-cell" 
+        <div
             ng-repeat="grid in $ctrl.gridBox" 
-            ng-class="{'heartbeat': $ctrl.heartbeatId == $index}"
+            ng-class="{'heartbeat': $ctrl.heartbeatId == $index,
+                        'grid-cell': true}"
             ng-click="$ctrl.hasClicked($index)">
         </div>
     </div>
 
 </div>
 
-<h1 class="myLevel"> Level {{$ctrl.myLevel}}</h1> 
-<p> score: {{$ctrl.myScore}} </p>
 <div class="new-game-button next-phase" ng-click="$ctrl.newGame()">new game</div>
-<div class="new-game-button" ng-click="$ctrl.isDone()">Finished</div>
