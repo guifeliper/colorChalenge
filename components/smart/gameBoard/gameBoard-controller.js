@@ -1,9 +1,9 @@
 angular.module('colourChallenge').controller('GameBoardController', [
-
+    'GameBoardService',
     'GRID.CONFIG',
     '$interval',
     '$scope',
-    function (GRID, $interval, $scope) {
+    function (service, GRID, $interval, $scope) {
         var self = this;
 
         //Variables for the css 
@@ -17,14 +17,17 @@ angular.module('colourChallenge').controller('GameBoardController', [
         self.generatedSequenceLocal = [];
         //self.stopInterval = {};
 
-  
+
         self.newGame = function ($index) {
+            self.loseTheGame = false;
             generateNewGame($index);
         };
 
         self.hasClicked = function ($index) {
             self.userSequence.push($index);
-            if (self.userSequence.length == self.generatedSequence.length) {
+            console.log( "user sequence " + self.userSequence);
+            console.log( "Generated sequence " + self.generatedSequence);
+            if (self.userSequence.length >= self.generatedSequence.length) {
                 isDone($index);
             }
         };
@@ -43,57 +46,50 @@ angular.module('colourChallenge').controller('GameBoardController', [
 
             //If the statement is true we go to next level
             if (result === true) {
-                self.generatedSequence.push(generateNewPosition());
-                self.generatedSequenceLocal = getTheArrayValues(self.generatedSequence);
+                self.generatedSequence.push(service.generateNewPosition(self.generatedSequence));
+                self.generatedSequenceLocal = service.getTheArrayValues(self.generatedSequence);
+                console.log("Sequencia gerada: " + self.generatedSequence);
                 self.userSequence = [];
+                self.myLevel = self.myLevel + 1;
                 self.myScore = self.myScore + 10;
 
                 colorsSequence($index);
 
             } else {
                 self.loseTheGame = !result; //I'm asking to move the board
+                myBesValueResult()
                 self.myScore = 0;
             }
         }
-        
+
+        function myBesValueResult() {
+            self.myBestValue.push(self.myScore);
+
+            if (self.myBestValue.length >= 2 && self.myBestValue[0] < self.myBestValue[1] ) {
+                self.myBestValue[0] = self.myBestValue[1];
+                self.myBestValue.pop();
+            }
+        }
+
         function generateNewGame($index) {
             self.myLevel = 0;
             self.userSequence = [];
-            self.generatedSequence = [generateNewPosition()];
-            self.generatedSequenceLocal = getTheArrayValues(self.generatedSequence);
+            self.generatedSequence = [service.generateNewPosition(self.generatedSequence)];
+            self.generatedSequenceLocal = service.getTheArrayValues(self.generatedSequence);
             colorsSequence($index);
         }
 
         function colorsSequence($index) {
-            //self.stopInterval[$index] = $interval(function ($index) {
-            self.stopInterval = $interval(function ($index) {
-                self.heartbeatId = self.generatedSequenceLocal.shift()
-                if (self.generatedSequenceLocal.length <= 0) {
-                    $interval.cancel(self.stopInterval[$index]);
-                }
-            }, 1000);
+            self.heartbeatId = self.generatedSequenceLocal.pop();
+            console.log("hearbeatId: " + self.heartbeatId);
+            // self.stopInterval = $interval(function ($index) {
+            //     self.heartbeatId = self.generatedSequenceLocal.shift()
+            //     if (self.generatedSequenceLocal.length <= 0) {
+            //         $interval.cancel(self.stopInterval[$index]);
+            //     }
+            // }, 1000);
         };
-        
-        function generateNewPosition() {
-            var randomNumberGenerated = Math.floor(Math.random() * (self.gridBox.length -1)) + 0;
-            var lastPosition = self.generatedSequence.length - 1
 
 
-            if (self.generatedSequence[lastPosition] === randomNumberGenerated) {
-                randomNumberGenerated = Math.floor(Math.random() * (self.gridBox.length -1)) + 0;
-            }
-            return randomNumberGenerated;
-
-        }
-        
-        //I'm using this function to not get arrays by reference
-        // I had a problem with that and I solve it in a dumb way
-        function getTheArrayValues(arrayForCopy) {
-            var arrayCopied = [];
-            for (i = 0; i < arrayForCopy.length; i++) {
-                arrayCopied.push(arrayForCopy[i]);
-            }
-            return arrayCopied;
-        }
     }
 ]);

@@ -1,6 +1,8 @@
-
 <div class="headerItens">
-    <h1 class="header__title">Colour Challenge</h1>
+    <div class="titles-container">
+        <h1 class="header__title">Colour Challenge</h1>
+        
+    </div>
     <div class="scores-container">
         <div class="information-container">Score
             <div class="score__points">
@@ -13,5 +15,8 @@
             </div>
         </div>
     </div>
-    
+<h2 ng-class="{'header__loser':true,
+               'shake-top': $ctrl.loseTheGame,
+               'header__loser--show': $ctrl.loseTheGame
+               }"> You lose!</h2>
 </div>
