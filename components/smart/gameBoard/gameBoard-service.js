@@ -5,23 +5,40 @@ angular.module('colourChallenge').service('GameBoardService', [
         var self = this;
         self.gridBox = GRID.gridBox;
 
-       this.generateNewPosition = function generateNewPosition(generatedSequence) {
+        this.generateNewPosition = function generateNewPosition(generatedSequence) {
             var randomNumberGenerated = Math.floor(Math.random() * (self.gridBox.length - 1)) + 0;
             var lastPosition = generatedSequence.length - 1
             if (generatedSequence[lastPosition] === randomNumberGenerated) {
                 randomNumberGenerated = Math.floor(Math.random() * (self.gridBox.length - 1)) + 0;
             }
             return randomNumberGenerated;
-        }
+        };
 
         //I'm using this function to not get arrays by reference
         // I had a problem with that and I solve it in a dumb way
-       this.getTheArrayValues = function getTheArrayValues(arrayForCopy) {
+        this.getTheArrayValues = function getTheArrayValues(arrayForCopy) {
             var arrayCopied = [];
             for (var i = 0; i < arrayForCopy.length; i++) {
                 arrayCopied.push(arrayForCopy[i]);
             }
             return arrayCopied;
-        }
+        };
+
+       this.checkEqualArray = function checkEqualArray(arrayToCheck, ArrayDefault) {
+            var result = false;
+
+            for (var i = 0; i < arrayToCheck.length; i++) {
+                if (ArrayDefault[i] === arrayToCheck[i]) {
+                    result = true;
+                }
+                else {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        };
+
+        
     }
 ]);
